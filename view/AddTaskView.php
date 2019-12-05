@@ -49,6 +49,10 @@
         <?php endif; ?>
     </div>
 
-    <button type="submit" class="btn btn-success">Добавить</button>
-    <button type="reset" class="btn btn-danger">Очистить</button>
+    <div class="admin-form-actions">
+        <button type="submit" class="btn btn-success">
+            <?= isset($data['isAdmin']) ? 'Редактировать' : 'Добавить' ?>
+        </button>
+        <?= (!isset($data['isAdmin'])) ? '<button type="reset" class="btn btn-danger">Очистить</button>' : '' ?>
+    </div>
 </form>

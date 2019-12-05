@@ -18,11 +18,11 @@ class TaskController extends Controller {
         $offset = 0;
         $limit = 3;
 
-        if (isset($GLOBALS['get']['page']))
+        if (isset($_GET['page']))
             $offset = $limit * ($_GET['page'] - 1);
-        if (isset($GLOBALS['get']['orderBy']))
-            $orderBy = $GLOBALS['get']['orderBy'];
-        if (isset($GLOBALS['get']['desc']))
+        if (isset($_GET['orderBy']))
+            $orderBy = $_GET['orderBy'];
+        if (isset($_GET['desc']))
             $asc = false;
 
         $data['tasks'] = $this->model->getDataForOnePage($orderBy, $asc, $offset, $limit);

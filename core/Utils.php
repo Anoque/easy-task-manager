@@ -5,21 +5,20 @@ namespace Core;
 class Utils {
 
     public static function getAllUrl($variable, $value) {
-        $add = array(
-            $variable => $value
-        );
-        
-        if (array_key_exists($variable, $GLOBALS['get'])) {
-            // if (!($variable == 'orderBy' && $value == $GLOBALS['get'][$variable])) {
-                unset($GLOBALS['get'][$variable]);
-            // }
+        $add = array();
+        $get = $_GET;
+
+        if (array_key_exists($variable, $get)) {
+            $get[$variable] = $value;
+        } else {
+            $add[$variable] = $value;
         }
 
-        return http_build_query(array_merge($add, $GLOBALS['get']));
+        return http_build_query(array_merge($add, $get));
     }
 
     public static function orderByCheck($key) {
-        return isset($GLOBALS['get']['orderBy']) && $GLOBALS['get']['orderBy'] == $key;
+        return isset($_GET['orderBy']) && $_GET['orderBy'] == $key;
     }
 
     public static function getPassword($pass) {

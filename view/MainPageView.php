@@ -54,7 +54,12 @@
         </li>
 
         <?php for ($i = 0; $i < $data['pages']; $i++): ?>
-            <li class="page-item"><a class="page-link" href="?<?= \Core\Utils::getAllUrl('page', $i + 1) ?>"><?= $i + 1 ?></a></li>
+            <li class="page-item <?= ((isset($_GET['page']) && ($_GET['page'] == $i + 1) || (!isset($_GET['page']) && $i == 0)) ? 'active' : '' ) ?>">
+                <a class="page-link" 
+                    href="?<?= \Core\Utils::getAllUrl('page', $i + 1) ?>">
+                    <?= $i + 1 ?>
+                </a>
+            </li>
         <?php endfor; ?>
 
         <li class="page-item">

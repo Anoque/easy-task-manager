@@ -24,8 +24,6 @@ class Model {
 
         $query .= " LIMIT {$offset}, {$limit}";
 
-        print_r($query);
-
         return Database::getData($query);
     }
 }

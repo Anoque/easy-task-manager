@@ -15,9 +15,6 @@ class Route {
 	public static function start() {
         $routes = explode('?', $_SERVER['REQUEST_URI']);
         $routes = explode('/', $routes[0]);
-        print_r($routes);
-        echo '<br>';
-        print_r($_GET);
 
         if (mb_strlen($routes[1]) == 0 || $routes[1] == 'tasks') {
             $task = new TaskController();

@@ -2,8 +2,6 @@
 
 session_start();
 
-echo $_SESSION['admin_id'];
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('error_reporting', E_ALL);
@@ -20,9 +18,7 @@ require_once('models/AdminModel.php');
 
 use \Core\Route;
 use \Core\Database;
-
+// Database::connectToDb('mysql.zzz.com.ua', 'helloroot', 'As4gas$asd', 'exterminationofall');
 Database::connectToDb('localhost', 'hello', 'root', 'task_manager');
-
-$GLOBALS['get'] = $_GET;
 
 Route::start();
