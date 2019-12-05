@@ -13,7 +13,21 @@ class TaskController extends Controller {
     }
 
     public function getList() {
-        $data['tasks'] = $this->model->getDataForOnePage();
+        $orderBy = 'id';
+        $asc = true;
+        $offset = 0;
+        $limit = 3;
+
+        if (isset($GLOBALS['get']['page']))
+            $offset = $limit * ($_GET['page'] - 1);
+        if (isset($GLOBALS['get']['orderBy']))
+            $orderBy = $GLOBALS['get']['orderBy'];
+        if (isset($GLOBALS['get']['desc']))
+            $asc = false;
+
+        $data['tasks'] = $this->model->getDataForOnePage($orderBy, $asc, $offset, $limit);
+        $count = $this->model->getCount();
+        $data['pages'] = ceil($count[0]['count'] / $limit);
 
         self::drawPage('MainPageView', 'Главная страница', $data);
     }

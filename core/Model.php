@@ -9,6 +9,12 @@ class Model {
         $query = 'SELECT * FROM ' . $this->table;
     }
 
+    public function getCount() {
+        $query = "SELECT COUNT(`id`) AS `count` FROM " . $this->table;
+
+        return Database::getData($query);
+    }
+
     public function getDataForOnePage($orderBy = 'id', $asc = true, $offset = 0, $limit = 3) {
         $query = "SELECT * FROM " . $this->table;
 
@@ -17,6 +23,8 @@ class Model {
         }
 
         $query .= " LIMIT {$offset}, {$limit}";
+
+        print_r($query);
 
         return Database::getData($query);
     }

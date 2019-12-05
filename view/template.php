@@ -3,6 +3,7 @@
 <head>
     <title><?= $title ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.1.34/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 
@@ -17,7 +18,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Войти</a>
+                        <?php if (\Core\Utils::isAdmin()): ?>
+                            <a class="nav-link" href="/admin/logout">Выйти</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="/admin/auth">Войти</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
