@@ -23,3 +23,14 @@
 .tasks-pagination {
     margin-top: 20px;
 }
+
+.tasks-messages {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.green {
+    color: green !important;
+}

@@ -33,7 +33,16 @@
                 <div class="card-title"><?= $value['id'] ?>: <?= $value['username'] ?></div>
                 <span>Email: <?= $value['email'] ?></span>
                 <p>Задача: <?= $value['task'] ?></p>
+                <div class="tasks-messages">
+                    <?= ($value['status'] == '1') ? '<span class="green">Выполненно</span>' : '' ?>
+                    <?= ($value['admin_id'] != NULL) ? '<span class="green">Отредактированно администратором</span>' : '' ?>
+                </div>
             </div>
+            <?php if (\Core\Utils::isAdmin()): ?>
+                <div class="card-footer">
+                    <a class="btn btn-warning" href="/tasks/edit/<?= $value['id'] ?>">Редактировать</a>
+                </div>
+            <?php endif; ?>
         </div>
     <?php endforeach; ?>
 </div>

@@ -17,4 +17,21 @@ class TaskModel extends Model {
 
         return Database::runQuery($query);
     }
+
+    public function getTask($id) {
+        $id = mysqli_real_escape_string($GLOBALS['mysql'], $id);
+
+        $query = "SELECT * FROM `".$this->table."` WHERE `id` = '{$id}'";
+
+        return Database::getData($query);
+    }
+
+    public function editTask($id, $task, $status, $admin_id) {
+        if ($admin_id != null) {
+            $admin_id = ", `admin_id` = '{$admin_id}'";
+        }
+        $query = "UPDATE `".$this->table."` SET `task` = '$task', `status` = '$status' {$admin_id} WHERE `id` = '{$id}'";
+
+        return Database::runQuery($query);
+    }
 }

@@ -2,9 +2,14 @@
 
 namespace Core;
 
-use \Controllers\TaskController;
-use \Controllers\AdminController;
-use \Core\Controller;
+use \Controllers\{
+    TaskController,
+    AdminController
+};
+use \Core\{
+    Controller,
+    Utils
+};
 
 class Route {
 	public static function start() {
@@ -22,8 +27,18 @@ class Route {
                     case 'add':
                         $task->addTask();
                         break;
+
+                    case 'edit':
+                        if (count($routes) > 3 && Utils::isAdmin())
+                            $task->editTask($routes[3]);
+                        else
+                            self::error404();
+
+                        break;
+
                     default:
                         self::error404();
+                        break;
                 }
             } else {
                 // Main page
@@ -41,6 +56,7 @@ class Route {
                         break;
                     default:
                         self::error404();
+                        break;
                 }
         } else {
             self::error404();

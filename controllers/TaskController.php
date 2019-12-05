@@ -62,4 +62,39 @@ class TaskController extends Controller {
         self::drawPage('AddTaskView', 'Добавление задачи', $data);
     }
 
+    public function editTask($id) {
+        $data = array();
+        $task = $this->model->getTask($id);
+
+        $data['id'] = $id;
+        $data['username'] = $task[0]['username'];
+        $data['email'] = $task[0]['email'];
+        $data['task'] = $task[0]['task'];
+        $data['status'] = $task[0]['status'];
+        $data['isAdmin'] = true;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $admin_id = null;
+            $task = $_POST['task'];
+            $status = isset($_POST['status']) ? '1' : '0';
+
+            if (!(mb_strlen($task) > 0 && mb_strlen($task) <= 255)) {
+                $data['errors']['task'] = 'Недопустимые значения или неверная длина (1-255)';
+            }
+
+
+            if ($data['task'] != $task) {
+                $admin_id = $_SESSION['admin_id'];
+            }
+
+            $data['edited'] = (isset($data['errors']) && !empty($data['errors'])) ? false : $this->model->editTask($id, $task, $status, $admin_id);
+
+            if ($data['edited']) {
+                header('Location: /tasks/edit/' . $id);
+            }
+        }
+
+        self::drawPage('AddTaskView', 'Добавление задачи', $data);
+    }
+
 }
