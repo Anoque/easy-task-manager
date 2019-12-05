@@ -7,7 +7,7 @@ class Controller {
 
     public static function drawPage($name, $title = null, $data = null) {
         $templateName = $name;
-        $title = $title ?? 'Easy task manager';
+        $title = ($title == null) ? 'Easy task manager' : $title;
 
         include 'view/template.php';
     }

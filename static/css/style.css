@@ -5,11 +5,11 @@
 
 .tasks-list {
     display: flex;
-    justify-content: space-between;
 }
 
 .tasks-list .card {
     width: 33%;
+    margin-right: .33%;
 }
 
 .tasks-sort {

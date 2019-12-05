@@ -2,10 +2,8 @@
 
 namespace Controllers;
 
-use \Core\{
-    Controller,
-    Utils
-};
+use \Core\Controller;
+use \Core\Utils;
 use \Models\AdminModel;
 
 class AdminController extends Controller {
@@ -22,8 +20,6 @@ class AdminController extends Controller {
             $user = $_POST['username'];
             $pass = Utils::getPassword($_POST['password']);
             $admin = $this->model->auth($user, $pass);
-
-            print_r($admin);
 
             if (count($admin) == 1) {
                 $_SESSION['admin_id'] = $admin[0]['id'];

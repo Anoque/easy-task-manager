@@ -2,14 +2,10 @@
 
 namespace Core;
 
-use \Controllers\{
-    TaskController,
-    AdminController
-};
-use \Core\{
-    Controller,
-    Utils
-};
+use \Controllers\TaskController;
+use \Controllers\AdminController;
+use \Core\Controller;
+use \Core\Utils;
 
 class Route {
 	public static function start() {

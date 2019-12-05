@@ -2,10 +2,8 @@
 
 namespace Models;
 
-use \Core\{
-    Model,
-    Database
-};
+use \Core\Model;
+use \Core\Database;
 
 class AdminModel extends Model {
     public $table = 'admins';
